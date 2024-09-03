@@ -20,11 +20,11 @@ class C_Faculty extends Controller
         ]);
     }
 
-    public function read($id)
+    public function detail($id)
     {
         $data = DB::select('select * from faculty where id = :id', ['id' => $id]);
 
-        return view('pages.faculty.read', [
+        return view('pages.faculty.detail', [
             'data' => $data,
             'title' => 'Detail Fakultas',
             'bread_item' => 'Fakultas',
@@ -32,18 +32,48 @@ class C_Faculty extends Controller
         ]);
     }
 
-    // lanjut disiniiii
     public function add()
     {
+        return view('pages.faculty.add', [
+            'title' => 'Tambah Fakultas',
+            'bread_item' => 'Fakultas',
+            'bread_item_active' => 'Tambah Fakultas',
+        ]);
+    }
+
+    public function add_data(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'faculty_name' => 'required|string|max:255',
+        ]);
+
         // Get the last faculty record's ID
-        $lastFaculty = DB::table('faculty')->last();
+        $lastFaculty = DB::table('faculty')->orderByDesc('id')->first();
 
         // Determine the new ID
         $newId = $lastFaculty ? $lastFaculty->id + 1 : 1;
 
-        dd($newId);
+        // get value
+        $faculty_name = $request->input('faculty_name');
+        $created_at = Carbon::now();
+        $updated_at = Carbon::now();
 
-        // return redirect('/faculty');
+        $added = DB::table('faculty')->insert([
+            'id' => $newId,
+            'faculty_name' => $faculty_name,
+            'created_at' => $created_at,
+            'updated_at' => $updated_at
+        ]);
+
+        // for notification
+        if ($added > 0) {
+            session()->flash('add_success', 'Data Fakultas berhasil ditambahkan!');
+        } else {
+            session()->flash('add_failed', 'Data Fakultas gagal ditambahkan!');
+        }
+
+        return redirect('/faculty');
     }
 
     public function delete($id)

@@ -12,7 +12,7 @@
         <div class="ms-auto">
           <div class="row">
             <div class="col-12 mb-3">
-              <a href="">
+              <a href="/faculty/add">
                 <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-placement="top"
                   title="Detail">
                   <i class="mdi mdi-plus"></i> Tambah Data
@@ -49,6 +49,18 @@
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       @endif
+      @if (session('add_success'))
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          {{ session('add_success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
+      @if (session('add_failed'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ session('add_failed') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
 
       <div class="row">
         <div class="col-12">
@@ -61,6 +73,8 @@
                 function:
                 <code>$().DataTable();</code>.
               </p>
+
+
 
               <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
                 <thead>
@@ -87,16 +101,44 @@
                             <i class="mdi mdi-eye"></i>
                           </button>
                         </a>
-                        <a href="/faculty/delete/{{ $d->id }}">
-                          <button type="button" class="btn btn-danger btn-xs waves-effect waves-light"
-                            data-bs-placement="top" title="Hapus">
-                            <i class="mdi mdi-trash-can"></i>
-                          </button>
-                        </a>
+
+                        <!-- Delete Button -->
+                        <button type="button" class="btn btn-danger btn-xs waves-effect waves-light"
+                          data-bs-placement="top" data-bs-toggle="modal"
+                          data-bs-target="#confirm-delete-{{ $d->id }}" title="Hapus">
+                          <i class="mdi mdi-trash-can"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="confirm-delete-{{ $d->id }}" data-bs-backdrop="static"
+                          data-bs-keyboard="false" tabindex="-1"
+                          aria-labelledby="confirm-delete-Label-{{ $d->id }}" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="confirm-delete-Label-{{ $d->id }}">Konfirmasi Hapus
+                                  Data</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Apa Anda yakin akan mengapus data "{{ $d->faculty_name }}"?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                                <a href="/faculty/delete/{{ $d->id }}">
+                                  <button type="button" class="btn btn-danger">Konfirmasi</button>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       </td>
                     </tr>
                   @endforeach
                 </tbody>
+
               </table>
 
             </div> <!-- end card body-->
