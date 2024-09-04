@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\C_Faculty;
+use App\Http\Controllers\C_StudyProgram;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,16 @@ Route::controller(C_Faculty::class)->group(function () {
     Route::post('/faculty/update_data/{id}', 'update_data');
     Route::get('/faculty/delete/{id}', 'delete');
     Route::get('/faculty/{id}', 'detail');
+});
+
+Route::controller(C_StudyProgram::class)->group(function () {
+    Route::get('/study_program', 'table');
+    Route::get('/study_program/add/', 'add');
+    Route::post('/study_program/add_data/', 'add_data');
+    Route::get('/study_program/update/{id}', 'update');
+    Route::post('/study_program/update_data/{id}', 'update_data');
+    Route::get('/study_program/delete/{id}', 'delete');
+    Route::get('/study_program/{id}', 'detail');
 });
 
 // check databases

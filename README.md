@@ -15,3 +15,7 @@ _Team_
 -   PHP 8.1.10
 -   MySQL Database
 -   Laragon full v.6.0
+
+## todo:
+
+-   lanjut di CRU prodi, deletenya udah beres
