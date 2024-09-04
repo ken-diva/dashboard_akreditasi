@@ -25,39 +25,64 @@
 
       {{-- notifikasi --}}
       @if (session('update_success'))
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-          {{ session('update_success') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-10">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              {{ session('update_success') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
         </div>
       @endif
       @if (session('update_failed'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{ session('update_failed') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-10">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('update_failed') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
         </div>
       @endif
       @if (session('delete_success'))
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-          {{ session('delete_success') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-10">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              {{ session('delete_success') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
         </div>
       @endif
       @if (session('delete_failed'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{ session('delete_failed') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-10">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('delete_failed') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
         </div>
       @endif
       @if (session('add_success'))
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-          {{ session('add_success') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-10">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              {{ session('add_success') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
         </div>
       @endif
       @if (session('add_failed'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{ session('add_failed') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-10">
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('add_failed') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
         </div>
       @endif
 
@@ -159,7 +184,8 @@
                                 Apa Anda yakin akan mengapus data "{{ $d->studyprogram_name }}"?
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                                <button type="button" class="btn btn-secondary"
+                                  data-bs-dismiss="modal">Kembali</button>
                                 <a href="/study_program/delete/{{ $d->id }}">
                                   <button type="button" class="btn btn-danger">Konfirmasi</button>
                                 </a>
