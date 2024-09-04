@@ -10,7 +10,17 @@ class C_Faculty extends Controller
 {
     public function index()
     {
-        $data = DB::select('select * from faculty');
+        return view('pages.dashboard', [
+            'title' => 'Dashboard',
+            'bread_item' => 'Dashboard',
+            'bread_item_active' => 'Dashboard',
+        ]);
+    }
+
+    public function table()
+    {
+        // $data = DB::select('select * from faculty');
+        $data = DB::table('faculty')->get();
 
         return view('pages.faculty.table', [
             'data' => $data,
@@ -22,7 +32,8 @@ class C_Faculty extends Controller
 
     public function detail($id)
     {
-        $data = DB::select('select * from faculty where id = :id', ['id' => $id]);
+        // $data = DB::select('select * from faculty where id = :id', ['id' => $id]);
+        $data = DB::table('faculty')->where('id', $id)->get();
 
         return view('pages.faculty.detail', [
             'data' => $data,
@@ -79,7 +90,8 @@ class C_Faculty extends Controller
     public function delete($id)
     {
         // delete record
-        $deleted = DB::delete('delete from faculty where id = :id', ['id' => $id]);
+        // $deleted = DB::delete('delete from faculty where id = :id', ['id' => $id]);
+        $deleted = DB::table('faculty')->where('id', $id)->delete();
 
         // for notification
         if ($deleted > 0) {
@@ -94,7 +106,8 @@ class C_Faculty extends Controller
     // just for view
     public function update($id)
     {
-        $data = DB::select('select * from faculty where id = :id', ['id' => $id]);
+        // $data = DB::select('select * from faculty where id = :id', ['id' => $id]);
+        $data = DB::table('faculty')->where('id', $id)->get();
 
         return view('pages.faculty.update', [
             'data' => $data,
@@ -116,17 +129,26 @@ class C_Faculty extends Controller
         $updated_at = Carbon::now();
 
         // update data
-        $updated = DB::update(
-            '
-        update Faculty 
-        set faculty_name = :faculty_name, updated_at = :updated_at
-        where id = :id',
-            [
-                'faculty_name' => $faculty_name,
-                'updated_at' => $updated_at,
-                'id' => $id
-            ]
-        );
+        // $updated = DB::update(
+        //     '
+        // update Faculty 
+        // set faculty_name = :faculty_name, updated_at = :updated_at
+        // where id = :id',
+        //     [
+        //         'faculty_name' => $faculty_name,
+        //         'updated_at' => $updated_at,
+        //         'id' => $id
+        //     ]
+        // );
+
+        $updated = DB::table('faculty')
+            ->where('id', $id)
+            ->update(
+                [
+                    'faculty_name' => $faculty_name,
+                    'updated_at' => $updated_at,
+                ]
+            );
 
         // for notification
         if ($updated > 0) {

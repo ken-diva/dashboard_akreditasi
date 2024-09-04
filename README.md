@@ -13,3 +13,5 @@ _Team_
 
 -   Laravel v.10x
 -   PHP 8.1.10
+-   MySQL Database
+-   Laragon full v.6.0

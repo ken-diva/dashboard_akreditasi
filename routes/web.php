@@ -22,7 +22,8 @@ use App\Http\Controllers\C_Faculty;
 // });
 
 Route::controller(C_Faculty::class)->group(function () {
-    Route::get('/faculty', 'index');
+    Route::get('/', 'index');
+    Route::get('/faculty', 'table');
     Route::get('/faculty/add/', 'add');
     Route::post('/faculty/add_data/', 'add_data');
     Route::get('/faculty/update/{id}', 'update');
