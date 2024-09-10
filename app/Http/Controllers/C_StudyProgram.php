@@ -10,7 +10,6 @@ class C_StudyProgram extends Controller
 {
     public function table()
     {
-        // $data = DB::select('select * from study_program');
         $data = DB::table('study_program')
             ->join("faculty", "faculty.id", "=", "study_program.faculty_id")
             ->select("faculty.faculty_name", "study_program.*")
@@ -26,8 +25,11 @@ class C_StudyProgram extends Controller
 
     public function detail($id)
     {
-        // $data = DB::select('select * from study_program where id = :id', ['id' => $id]);
-        $data = DB::table('study_program')->where('id', $id)->get();
+        $data = DB::table('study_program')
+            ->join("faculty", "faculty.id", "=", "study_program.faculty_id")
+            ->select("faculty.faculty_name", "study_program.*")
+            ->where('study_program.id', $id)
+            ->get();
 
         return view('pages.study_program.detail', [
             'data' => $data,
@@ -39,7 +41,10 @@ class C_StudyProgram extends Controller
 
     public function add()
     {
+        $faculty_data = DB::table('faculty')->get();
+
         return view('pages.study_program.add', [
+            'faculty_data' => $faculty_data,
             'title' => 'Tambah Program Studi',
             'bread_item' => 'Program Studi',
             'bread_item_active' => 'Tambah Program Studi',
@@ -50,7 +55,7 @@ class C_StudyProgram extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'study_program_name' => 'required|string|max:255',
+            'studyprogram_name' => 'required|string|max:255',
         ]);
 
         // Get the last study_program record's ID
@@ -60,13 +65,35 @@ class C_StudyProgram extends Controller
         $newId = $laststudy_program ? $laststudy_program->id + 1 : 1;
 
         // get value
-        $study_program_name = $request->input('study_program_name');
+        $studyprogram_name = $request->input('studyprogram_name');
+        $faculty_id = $request->input('faculty_id');
+        $level = $request->input('level');
+        $accreditation_status = $request->input('accreditation_status');
+        $national_accreditation = $request->input('national_accreditation');
+        $national_accrediation_grade = $request->input('national_accrediation_grade');
+        $date_national_accreditation = $request->input('date_national_accreditation');
+        $expired_national_accreditation = $request->input('expired_national_accreditation');
+        $international_accreditaton = $request->input('international_accreditaton');
+        $international_accrediation_grade = $request->input('international_accrediation_grade');
+        $date_international_accreditation = $request->input('expired_international_accreditation');
+        $expired_international_accreditation = $request->input('expired_international_accreditation');
         $created_at = Carbon::now();
         $updated_at = Carbon::now();
 
         $added = DB::table('study_program')->insert([
             'id' => $newId,
-            'study_program_name' => $study_program_name,
+            'faculty_id' => $faculty_id,
+            'studyprogram_name' => $studyprogram_name,
+            'level' => $level,
+            'accreditation_status' => $accreditation_status,
+            'national_accreditation' => $national_accreditation,
+            'national_accrediation_grade' => $national_accrediation_grade,
+            'date_national_accreditation' => $date_national_accreditation,
+            'expired_national_accreditation' => $expired_national_accreditation,
+            'international_accreditaton' => $international_accreditaton,
+            'international_accrediation_grade' => $international_accrediation_grade,
+            'date_international_accreditation' => $date_international_accreditation,
+            'expired_international_accreditation' => $expired_international_accreditation,
             'created_at' => $created_at,
             'updated_at' => $updated_at
         ]);
@@ -84,7 +111,6 @@ class C_StudyProgram extends Controller
     public function delete($id)
     {
         // delete record
-        // $deleted = DB::delete('delete from study_program where id = :id', ['id' => $id]);
         $deleted = DB::table('study_program')->where('id', $id)->delete();
 
         // for notification
@@ -100,8 +126,11 @@ class C_StudyProgram extends Controller
     // just for view
     public function update($id)
     {
-        // $data = DB::select('select * from study_program where id = :id', ['id' => $id]);
-        $data = DB::table('study_program')->where('id', $id)->get();
+        $data = DB::table('study_program')
+            ->join("faculty", "faculty.id", "=", "study_program.faculty_id")
+            ->select("faculty.faculty_name", "study_program.*")
+            ->where('study_program.id', $id)
+            ->get();
 
         return view('pages.study_program.update', [
             'data' => $data,
@@ -115,31 +144,38 @@ class C_StudyProgram extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'study_program_name' => 'required|string|max:255',
+            'studyprogram_name' => 'required|string|max:255',
         ]);
 
         // get value
-        $study_program_name = $request->input('study_program_name');
+        $studyprogram_name = $request->input('studyprogram_name');
+        $level = $request->input('level');
+        $accreditation_status = $request->input('accreditation_status');
+        $national_accreditation = $request->input('national_accreditation');
+        $national_accrediation_grade = $request->input('national_accrediation_grade');
+        $date_national_accreditation = $request->input('date_national_accreditation');
+        $expired_national_accreditation = $request->input('expired_national_accreditation');
+        $international_accreditaton = $request->input('international_accreditaton');
+        $international_accrediation_grade = $request->input('international_accrediation_grade');
+        $date_international_accreditation = $request->input('expired_international_accreditation');
+        $expired_international_accreditation = $request->input('expired_international_accreditation');
         $updated_at = Carbon::now();
-
-        // update data
-        // $updated = DB::update(
-        //     '
-        // update study_program 
-        // set study_program_name = :study_program_name, updated_at = :updated_at
-        // where id = :id',
-        //     [
-        //         'study_program_name' => $study_program_name,
-        //         'updated_at' => $updated_at,
-        //         'id' => $id
-        //     ]
-        // );
 
         $updated = DB::table('study_program')
             ->where('id', $id)
             ->update(
                 [
-                    'study_program_name' => $study_program_name,
+                    'studyprogram_name' => $studyprogram_name,
+                    'level' => $level,
+                    'accreditation_status' => $accreditation_status,
+                    'national_accreditation' => $national_accreditation,
+                    'national_accrediation_grade' => $national_accrediation_grade,
+                    'date_national_accreditation' => $date_national_accreditation,
+                    'expired_national_accreditation' => $expired_national_accreditation,
+                    'international_accreditaton' => $international_accreditaton,
+                    'international_accrediation_grade' => $international_accrediation_grade,
+                    'date_international_accreditation' => $date_international_accreditation,
+                    'expired_international_accreditation' => $expired_international_accreditation,
                     'updated_at' => $updated_at,
                 ]
             );

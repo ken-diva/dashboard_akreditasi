@@ -8,6 +8,7 @@ _Team_
 -   Veronika Efendi
 -   Fadil Afgani
 -   Ken Diva G.A.
+-   Zahid (kontrak) ⛑️ frontend
 
 ## Tech Stack 🍔
 
@@ -18,4 +19,4 @@ _Team_
 
 ## todo:
 
--   lanjut di CRU prodi, deletenya udah beres
+-   lanjut pakai data dummy + pakai desain baru dari mas zahid

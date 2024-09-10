@@ -6,7 +6,7 @@
     <div class="container-fluid">
 
       <!-- start page title -->
-      <div class="py-3 py-lg-4">
+      {{-- <div class="py-3 py-lg-4">
         <div class="row">
           <div class="col-lg-5">
             <h4 class="page-title mb-0">{{ $title }}</h4>
@@ -20,13 +20,14 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
+      @include('layout._breadcrumb')
       <!-- end page title -->
 
       {{-- notifikasi --}}
       @if (session('update_success'))
         <div class="row">
-          <div class="col-10">
+          <div class="col-12">
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
               {{ session('update_success') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -36,7 +37,7 @@
       @endif
       @if (session('update_failed'))
         <div class="row">
-          <div class="col-10">
+          <div class="col-12">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               {{ session('update_failed') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -46,7 +47,7 @@
       @endif
       @if (session('delete_success'))
         <div class="row">
-          <div class="col-10">
+          <div class="col-12">
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
               {{ session('delete_success') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -56,7 +57,7 @@
       @endif
       @if (session('delete_failed'))
         <div class="row">
-          <div class="col-10">
+          <div class="col-12">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               {{ session('delete_failed') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -66,7 +67,7 @@
       @endif
       @if (session('add_success'))
         <div class="row">
-          <div class="col-10">
+          <div class="col-12">
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
               {{ session('add_success') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -76,7 +77,7 @@
       @endif
       @if (session('add_failed'))
         <div class="row">
-          <div class="col-10">
+          <div class="col-12">
 
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               {{ session('add_failed') }}
@@ -87,7 +88,7 @@
       @endif
 
       <div class="row">
-        <div class="col-10">
+        <div class="col-12">
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
@@ -111,10 +112,6 @@
                 </div>
               </div>
 
-
-
-
-
               <table id="scroll-horizontal-datatable" class="table w-100 nowrap" style="width:100%">
                 {{-- <table id="contoh" class="display nowrap" style="width:100%"> --}}
                 <thead>
@@ -122,17 +119,8 @@
                     <th>No.</th>
                     <th>Fakultas</th>
                     <th>Program Studi</th>
-                    <th>Level</th>
+                    <th>Jenjang</th>
                     <th>Akreditasi</th>
-                    <th>Akreditasi Nasional</th>
-                    <th>Grade Akreditasi Nasional</th>
-                    <th>Tanggal Akreditasi Nasional</th>
-                    <th>Tanggal Habis Akreditasi Nasional</th>
-                    <th>Akreditasi Internasional</th>
-                    <th>Grade Akreditasi Internasional</th>
-                    <th>Tanggal Akreditasi Internasional</th>
-                    <th>Tanggal Habis Akreditasi Internasional</th>
-                    <th>#</th>
                   </tr>
                 </thead>
 
@@ -142,18 +130,21 @@
                       <td width="5%">{{ $loop->iteration }}.</td>
                       <td>{{ $d->faculty_name }}</td>
                       <td>{{ $d->studyprogram_name }}</td>
-                      <td>{{ $d->level }}</td>
-                      <td>{{ $d->accreditation_status }}</td>
-                      <td>{{ $d->national_accreditation }}</td>
-                      <td>{{ $d->national_accrediation_grade }}</td>
-                      <td>{{ $d->date_national_accreditation }}</td>
-                      <td>{{ $d->expired_national_accreditation }}</td>
-                      <td>{{ $d->international_accreditaton }}</td>
-                      <td>{{ $d->international_accrediation_grade }}</td>
-                      <td>{{ $d->date_international_accreditation }}</td>
-                      <td>{{ $d->expired_international_accreditation }}</td>
+                      <td>
+                        @if ($d->level == 1)
+                          S1
+                        @elseif ($d->level == 2)
+                          S2
+                        @elseif ($d->level == 3)
+                          S3
+                        @elseif ($d->level == 4)
+                          D3
+                        @else
+                          D4
+                        @endif
+                      </td>
                       <td width="10%">
-                        <a href="/study_program/{{ $d->id }}">
+                        <a href="/study_program/detail/{{ $d->id }}">
                           <button type="button" class="btn btn-warning btn-xs waves-effect waves-light"
                             data-bs-placement="top" title="Detail">
                             <i class="mdi mdi-eye"></i>

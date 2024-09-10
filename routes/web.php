@@ -30,7 +30,7 @@ Route::controller(C_Faculty::class)->group(function () {
     Route::get('/faculty/update/{id}', 'update');
     Route::post('/faculty/update_data/{id}', 'update_data');
     Route::get('/faculty/delete/{id}', 'delete');
-    Route::get('/faculty/{id}', 'detail');
+    Route::get('/faculty/detail/{id}', 'detail');
 });
 
 Route::controller(C_StudyProgram::class)->group(function () {
@@ -40,7 +40,7 @@ Route::controller(C_StudyProgram::class)->group(function () {
     Route::get('/study_program/update/{id}', 'update');
     Route::post('/study_program/update_data/{id}', 'update_data');
     Route::get('/study_program/delete/{id}', 'delete');
-    Route::get('/study_program/{id}', 'detail');
+    Route::get('/study_program/detail/{id}', 'detail');
 });
 
 // check databases

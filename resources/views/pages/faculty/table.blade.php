@@ -95,7 +95,7 @@
                       <td>{{ $d->created_at }}</td>
                       <td>{{ $d->updated_at }}</td>
                       <td width="10%">
-                        <a href="/faculty/{{ $d->id }}">
+                        <a href="/faculty/detail/{{ $d->id }}">
                           <button type="button" class="btn btn-warning btn-xs waves-effect waves-light"
                             data-bs-placement="top" title="Detail">
                             <i class="mdi mdi-eye"></i>

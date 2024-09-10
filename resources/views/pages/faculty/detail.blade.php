@@ -19,11 +19,11 @@
               </p>
               @foreach ($data as $d)
                 <div class="mb-2">
-                  <label for="faculty" class="form-label">Nama Fakultas</label>
+                  <label class="form-label">Nama Fakultas</label>
                   <input type="text" class="form-control" value="{{ $d->faculty_name }}" disabled>
                 </div>
                 <div class="mb-2">
-                  <label for="faculty" class="form-label">Created At</label>
+                  <label class="form-label">Created At</label>
                   <input type="text" class="form-control" value="{{ $d->created_at }}" disabled>
                 </div>
                 <div class="mb-2 form-check">
