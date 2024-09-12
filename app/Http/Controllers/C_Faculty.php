@@ -10,7 +10,7 @@ class C_Faculty extends Controller
 {
     public function index()
     {
-        return view('pages.dashboard', [
+        return view('layout.base', [
             'title' => 'Dashboard',
             'bread_item' => 'Dashboard',
             'bread_item_active' => 'Dashboard',
