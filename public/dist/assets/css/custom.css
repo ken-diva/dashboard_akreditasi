@@ -1,0 +1,38 @@
+.sidebar-active {
+    display: flex;
+    align-items: center; /* Vertically centers the content */
+    background-color: hsl(0, 100%, 50%, 0.1);
+    color: red;
+    padding: 10px 0px;
+    border-radius: 5px; /* Makes the corners rounded */
+    width: 100%;
+}
+
+.custom-card1 {
+    padding: 20px;
+    display: block;
+    color: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    width: 100%;
+    background-image: url("../images/bg-dashboard.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.custom-card2 {
+    padding: 20px;
+    display: block;
+    color: white;
+    margin-top: 10px;
+    border-radius: 15px;
+    width: 100%;
+    background-color: hsla(0, 0%, 0%, 0.5);
+}
+
+.text-kiri-kanan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

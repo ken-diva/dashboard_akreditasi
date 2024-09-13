@@ -14,25 +14,27 @@
   <ul class="side-nav">
 
     <li class="side-nav-item">
-      <a href="/" class="side-nav-link">
+      <a href="mahasiswa/" class="side-nav-link">
         <i class="ri-database-2-line"></i>
         <span> Data Mahasiswa </span>
       </a>
     </li>
     <li class="side-nav-item">
       <a href="/" class="side-nav-link">
-        <i class="ri-dashboard-line"></i>
-        <span> Dashboard </span>
+        <div class="sidebar-active">
+          <i class="ri-dashboard-line"></i>
+          <span> Dashboard </span>
+        </div>
       </a>
     </li>
     <li class="side-nav-item">
-      <a href="/" class="side-nav-link">
+      <a href="/analytics" class="side-nav-link">
         <i class="ri-line-chart-line"></i>
         <span> Analytics </span>
       </a>
     </li>
     <li class="side-nav-item">
-      <a href="/" class="side-nav-link">
+      <a href="/transaksional" class="side-nav-link">
         <i class="ri-bar-chart-line"></i>
         <span> Data Transaksional </span>
       </a>

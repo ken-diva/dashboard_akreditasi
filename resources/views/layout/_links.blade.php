@@ -16,3 +16,6 @@
 
 <!-- Icons css -->
 <link href="{{ asset('dist/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+
+{{-- custom css --}}
+<link rel="stylesheet" href="{{ asset('dist/assets/css/custom.css') }}">
