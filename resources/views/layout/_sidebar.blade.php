@@ -1,20 +1,28 @@
 <!-- Brand Logo Light -->
-<a href="/" class="logo logo-light">
-  <span class="logo-lg">
-    <img src="{{ asset('dist/assets/images/logo.png') }}" alt="dark logo">
-  </span>
-  <span class="logo-sm">
-    <img src="{{ asset('dist/assets/images/logo-sm.png') }}" alt="small logo">
-  </span>
-</a>
+<div class=" bg-putih">
+  <a href="/" class="logo logo-light">
+    <span class="logo-lg">
+      <img src="{{ asset('dist/assets/images/logo.png') }}" alt="dark logo">
+    </span>
+    <span class="logo-sm">
+      <img src="{{ asset('dist/assets/images/logo-sm.png') }}" alt="small logo">
+    </span>
+  </a>
+</div>
 
 <!-- Sidebar -left -->
-<div class="h-100" id="leftside-menu-container" data-simplebar>
+<div class="h-100 bg-putih" id="leftside-menu-container" data-simplebar>
   <!--- Sidemenu -->
   <ul class="side-nav">
 
     <li class="side-nav-item">
-      <a href="mahasiswa/" class="side-nav-link">
+      <a href="/study_program" class="side-nav-link">
+        <i class="ri-database-2-line"></i>
+        <span> Program Studi </span>
+      </a>
+    </li>
+    <li class="side-nav-item">
+      <a href="/mahasiswa" class="side-nav-link">
         <i class="ri-database-2-line"></i>
         <span> Data Mahasiswa </span>
       </a>

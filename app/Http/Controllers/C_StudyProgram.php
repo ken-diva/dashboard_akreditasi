@@ -15,8 +15,11 @@ class C_StudyProgram extends Controller
             ->select("faculty.faculty_name", "study_program.*")
             ->get();
 
-        return view('pages.study_program.table', [
+        $faculty_data = DB::table('faculty')->get();
+
+        return view('pages.prodi.table', [
             'data' => $data,
+            'faculty_data' => $faculty_data,
             'title' => 'Data Program Studi',
             'bread_item' => 'Program Studi',
             'bread_item_active' => 'Data Program Studi',
@@ -29,14 +32,49 @@ class C_StudyProgram extends Controller
             ->join("faculty", "faculty.id", "=", "study_program.faculty_id")
             ->select("faculty.faculty_name", "study_program.*")
             ->where('study_program.id', $id)
-            ->get();
+            ->first();
 
-        return view('pages.study_program.detail', [
-            'data' => $data,
-            'title' => 'Detail Program Studi',
-            'bread_item' => 'Program Studi',
-            'bread_item_active' => 'Detail Program Studi',
-        ]);
+        if ($data) {
+
+            $level_formatted = "";
+            if ($data->level == 1) {
+                $level_formatted = "S1";
+            } else if ($data->level == 2) {
+                $level_formatted = "S2";
+            } else if ($data->level == 3) {
+                $level_formatted = "S3";
+            } else if ($data->level == 4) {
+                $level_formatted = "D4";
+            } else if ($data->level == 5) {
+                $level_formatted = "D5";
+            }
+
+            return response()->json([
+                'faculty_name' => $data->faculty_name,
+                'studyprogram_name' => $data->studyprogram_name,
+                'faculty_id' => $data->faculty_id,
+                'level' => $level_formatted,
+                'accreditation_status' => $data->accreditation_status,
+                'national_accreditation' => $data->national_accreditation,
+                'national_accrediation_grade' => $data->national_accrediation_grade,
+                'date_national_accreditation' =>
+                date('d F Y', strtotime($data->date_national_accreditation)),
+                'expired_national_accreditation' => date('d F Y', strtotime($data->expired_national_accreditation)),
+                'international_accreditaton' => $data->international_accreditaton,
+                'international_accrediation_grade' => $data->international_accrediation_grade,
+                'date_international_accreditation' => date('d F Y', strtotime($data->expired_international_accreditation)),
+                'expired_international_accreditation' => date('d F Y', strtotime($data->expired_international_accreditation)),
+            ]);
+        } else {
+            return response()->json(['error' => 'Item not found'], 404);
+        }
+
+        // return view('pages.study_program.detail', [
+        //     'data' => $data,
+        //     'title' => 'Detail Program Studi',
+        //     'bread_item' => 'Program Studi',
+        //     'bread_item_active' => 'Detail Program Studi',
+        // ]);
     }
 
     public function add()
@@ -53,6 +91,10 @@ class C_StudyProgram extends Controller
 
     public function add_data(Request $request)
     {
+
+        // $date = $request->input('expired_national_accreditation');
+        // $tes = Carbon::createFromFormat('m/d/Y', $date)->format('Y-m-d 00:00:00');
+        // dd($tes);
         // Validate the incoming request data
         $request->validate([
             'studyprogram_name' => 'required|string|max:255',
@@ -88,12 +130,12 @@ class C_StudyProgram extends Controller
             'accreditation_status' => $accreditation_status,
             'national_accreditation' => $national_accreditation,
             'national_accrediation_grade' => $national_accrediation_grade,
-            'date_national_accreditation' => $date_national_accreditation,
-            'expired_national_accreditation' => $expired_national_accreditation,
+            'date_national_accreditation' => Carbon::createFromFormat('m/d/Y', $date_national_accreditation)->format('Y-m-d 00:00:00'),
+            'expired_national_accreditation' => Carbon::createFromFormat('m/d/Y', $expired_national_accreditation)->format('Y-m-d 00:00:00'),
             'international_accreditaton' => $international_accreditaton,
             'international_accrediation_grade' => $international_accrediation_grade,
-            'date_international_accreditation' => $date_international_accreditation,
-            'expired_international_accreditation' => $expired_international_accreditation,
+            'date_international_accreditation' => Carbon::createFromFormat('m/d/Y', $date_international_accreditation)->format('Y-m-d 00:00:00'),
+            'expired_international_accreditation' => Carbon::createFromFormat('m/d/Y', $expired_international_accreditation)->format('Y-m-d 00:00:00'),
             'created_at' => $created_at,
             'updated_at' => $updated_at
         ]);
