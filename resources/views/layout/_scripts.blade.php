@@ -7,6 +7,7 @@
 
 <!-- Apex Charts js -->
 <script src="{{ asset('dist/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
 
 <!-- Vector Map js -->
 <script src="{{ asset('dist/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}">

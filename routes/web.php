@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Auth;
+use App\Http\Controllers\C_Dashboard;
 use App\Http\Controllers\C_Faculty;
 use App\Http\Controllers\C_StudyProgram;
 
@@ -22,8 +23,11 @@ use App\Http\Controllers\C_StudyProgram;
 //     Route::get('/logout', 'logout');
 // });
 
-Route::controller(C_Faculty::class)->group(function () {
+Route::controller(C_Dashboard::class)->group(function () {
     Route::get('/', 'index');
+});
+
+Route::controller(C_Faculty::class)->group(function () {
     Route::get('/faculty', 'table');
     Route::get('/faculty/add/', 'add');
     Route::post('/faculty/add_data/', 'add_data');

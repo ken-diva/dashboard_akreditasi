@@ -1,19 +1,13 @@
-<footer class="footer">
+<!-- Footer Start -->
+<footer class="footer" style="background-color: white">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6">
-        <div>
-          <script>
-            document.write(new Date().getFullYear())
-          </script> © Dashtrap
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="d-none d-md-flex gap-4 align-item-center justify-content-md-end">
-          <p class="mb-0">Develop by KDGA
-          </p>
-        </div>
+      <div class="col-12 text-center">
+        <script>
+          document.write(new Date().getFullYear())
+        </script> © Develop by KDGA
       </div>
     </div>
   </div>
 </footer>
+<!-- end Footer -->

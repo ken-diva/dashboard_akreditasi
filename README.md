@@ -19,4 +19,5 @@ _Team_
 
 ## todo:
 
--   lanjut pakai data dummy + pakai desain baru dari mas zahid
+-   dashboard + data mahasiswa dulu buat ke bu ade
+-   lanjut di edit data pakai modal

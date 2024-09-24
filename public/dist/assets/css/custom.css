@@ -1,11 +1,18 @@
 .sidebar-active {
     display: flex;
-    align-items: center; /* Vertically centers the content */
+    align-items: center;
     background-color: hsl(0, 100%, 50%, 0.1);
     color: red;
     padding: 10px 0px;
-    border-radius: 5px; /* Makes the corners rounded */
+    margin: 0%;
+    border-radius: 5px;
     width: 100%;
+}
+
+.sidebar-nonactive {
+    display: flex;
+    align-items: center;
+    margin: 0px;
 }
 
 .custom-card1 {
@@ -24,11 +31,10 @@
 .custom-card2 {
     padding: 20px;
     display: block;
-    color: white;
     margin-top: 10px;
     border-radius: 15px;
     width: 100%;
-    background-color: hsla(0, 0%, 0%, 0.5);
+    border: 1px rgba(0, 0, 0, 0.175) solid;
 }
 
 .text-kiri-kanan {
@@ -48,4 +54,124 @@
 
 .bg-putih {
     background-color: white;
+}
+
+html[data-sidenav-size="condensed"]:not([data-layout="topnav"])
+    .wrapper
+    .leftside-menu
+    .logo
+    span.custom-logo-lg {
+    display: none;
+}
+html[data-sidenav-size="condensed"]:not([data-layout="topnav"])
+    .wrapper
+    .leftside-menu
+    .logo
+    span.custom-logo-sm {
+    display: block;
+}
+
+@media (max-width: 767.98px) {
+    .navbar-custom {
+        padding: 0 0.75rem;
+    }
+    .logo-topbar {
+        display: block;
+    }
+    .logo-topbar span.custom-logo-lg {
+        display: none;
+    }
+    .logo-topbar span.custom-logo-sm {
+        display: block;
+    }
+}
+
+.custom-logo-lg img {
+    height: 40px;
+}
+
+.custom-logo-sm img {
+    height: 40px;
+}
+
+.logo span.custom-logo-lg {
+    display: block;
+}
+.logo span.custom-logo-sm {
+    display: none;
+}
+
+.red-border-card {
+    border-left: 5px solid red;
+    padding-left: 10px;
+}
+
+.red-border-card h4 {
+    color: black;
+}
+
+.wrapper-card-dashboard {
+    display: flex;
+    align-items: top;
+    margin-top: 20px;
+}
+
+.wrapper-card-dashboard img {
+    margin-right: 10px;
+}
+
+.wrapper-card-dashboard > .text-content h4 {
+    margin: 0;
+    color: black;
+}
+
+.wrapper-card-dashboard > .text-content p {
+    margin: 5px 0 0;
+}
+
+.wrapper-card-dashboard2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    margin-top: 20px;
+}
+
+.wrapper-card-dashboard2 img {
+    margin-right: 10px;
+}
+
+.wrapper-card-dashboard2 > .text-content h4 {
+    margin: 0;
+    color: black;
+}
+
+.wrapper-card-dashboard2 > .text-content p {
+    margin: 5px 0 0;
+}
+
+.apexcharts-tooltip-custom {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.apexcharts-tooltip-custom strong {
+    color: #fff;
+}
+
+.apexcharts-tooltip-custom .actual {
+    color: #007bff;
+}
+
+.apexcharts-tooltip-custom .threshold {
+    color: #4fe472;
+}
+
+.apexcharts-tooltip-custom .conclusion {
+    color: #28a745;
+}
+
+.apexcharts-tooltip-custom .conclusion.fail {
+    color: #ff263c;
 }

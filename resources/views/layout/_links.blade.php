@@ -20,6 +20,11 @@
 {{-- custom css --}}
 <link rel="stylesheet" href="{{ asset('dist/assets/css/custom.css') }}">
 
+{{-- apexcharts --}}
+{{-- <script defer src="{{ asset('dist/assets/vendor/apexcharts/apexcharts.min.js') }}"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
 
 <!-- Datatables css -->
 <link href="{{ asset('dist/assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet"
