@@ -129,8 +129,8 @@
 
               <!-- Username and Employee Number -->
               <span class="me-2">
-                <h5 class="my-0 fw-normal">Thomson</h5>
-                <small class="text-muted">Employee #12345</small>
+                <h5 class="my-0 fw-normal">Admin SPMI</h5>
+                <small class="text-muted">admin@mail.com</small>
               </span>
             </li>
 
@@ -138,7 +138,6 @@
         </div>
       </div>
       <!-- ========== Topbar End ========== -->
-
 
       <!-- ========== Left Sidebar Start ========== -->
       <div class="leftside-menu">

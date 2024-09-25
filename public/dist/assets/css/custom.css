@@ -40,7 +40,11 @@
 .text-kiri-kanan {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: top;
+}
+
+.text-kiri-kanan .text-biru {
+    color: rgb(93, 122, 252);
 }
 
 .rata-kanan {
@@ -108,6 +112,15 @@ html[data-sidenav-size="condensed"]:not([data-layout="topnav"])
 
 .red-border-card h4 {
     color: black;
+}
+
+.wrapper-card-metric {
+    display: flex;
+    align-items: top;
+}
+
+.wrapper-card-metric img {
+    margin-right: 10px;
 }
 
 .wrapper-card-dashboard {

@@ -16,22 +16,6 @@
   <ul class="side-nav">
 
     <li class="side-nav-item">
-      <a href="/study_program" class="side-nav-link">
-        <div class="{{ $bread_item == 'Program Studi' ? 'sidebar-active' : 'sidebar-nonactive' }}">
-          <i class="ri-database-2-line"></i>
-          <span> Program Studi </span>
-        </div>
-      </a>
-    </li>
-    <li class="side-nav-item">
-      <a href="/mahasiswa" class="side-nav-link">
-        <div class="{{ $bread_item == 'Data Mahasiswa' ? 'sidebar-active' : 'sidebar-nonactive' }}">
-          <i class="ri-database-2-line"></i>
-          <span> Data Mahasiswa </span>
-        </div>
-      </a>
-    </li>
-    <li class="side-nav-item">
       <a href="/" class="side-nav-link">
         <div class="{{ $bread_item == 'Dashboard' ? 'sidebar-active' : 'sidebar-nonactive' }}">
           <i class="ri-dashboard-line"></i>
@@ -39,6 +23,24 @@
         </div>
       </a>
     </li>
+
+    <li class="side-nav-item">
+      <a href="/study_program" class="side-nav-link">
+        <div class="{{ $bread_item == 'Program Studi' ? 'sidebar-active' : 'sidebar-nonactive' }}">
+          <i class="ri-database-2-line"></i>
+          <span> Program Studi </span>
+        </div>
+      </a>
+    </li>
+    {{-- <li class="side-nav-item">
+      <a href="/mahasiswa" class="side-nav-link">
+        <div class="{{ $bread_item == 'Data Mahasiswa' ? 'sidebar-active' : 'sidebar-nonactive' }}">
+          <i class="ri-database-2-line"></i>
+          <span> Data Mahasiswa </span>
+        </div>
+      </a>
+    </li> --}}
+
 
   </ul>
   <!--- End Sidemenu -->

@@ -126,7 +126,7 @@
                   <button type="button" class="btn btn-outline-danger btn-sm">
                     <i class="ri-bookmark-line"></i> Data Program Studi</button>
                 </a>
-                <a href="">
+                <a href="/metric">
                   <button type="button" class="btn btn-danger btn-sm">
                     <i class="ri-function-line "></i> Detail Metrik</button>
                 </a>

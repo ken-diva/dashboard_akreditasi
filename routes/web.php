@@ -25,6 +25,7 @@ use App\Http\Controllers\C_StudyProgram;
 
 Route::controller(C_Dashboard::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/metric', 'metric');
 });
 
 Route::controller(C_Faculty::class)->group(function () {
