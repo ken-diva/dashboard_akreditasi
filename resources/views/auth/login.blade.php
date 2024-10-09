@@ -1,73 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
+<html lang="en">
 
   <head>
     <meta charset="utf-8" />
     <title>Log In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Myra Studio" name="author" />
+    <meta content="SPMI Dashboard" name="description" />
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('dist/assets/images/favicon.ico') }}">
 
-    <!-- App css -->
-    <link href="{{ asset('dist/assets/css/style.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('dist/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Theme Config Js -->
     <script src="{{ asset('dist/assets/js/config.js') }}"></script>
+
+    <!-- App css -->
+    <link href="{{ asset('dist/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- Icons css -->
+    <link href="{{ asset('dist/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
   </head>
 
-  <body class="bg-primary d-flex justify-content-center align-items-center min-vh-100 p-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xl-4 col-md-5">
-          <div class="card">
-            <div class="card-body p-4">
-
-              <div class="text-center w-75 mx-auto auth-logo mb-4">
-                <a href="/" class="logo-dark">
-                  <span><img src="{{ asset('dist/assets/images/logo-dark.png') }}" alt="" height="26"></span>
-                </a>
+  <body class="authentication-bg position-relative">
+    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xxl-4 col-lg-4">
+            @if (@session('status'))
+              <div class="alert alert-danger" role="alert">
+                Login Gagal!
               </div>
+            @endif
+            <div class="card overflow-hidden">
+              <div class="row g-0">
+                <div class="d-flex flex-column h-100">
+                  {{-- <div class="auth-brand p-4">
+                      <a href="index.html" class="logo-light">
+                        <img src="{{ asset('dist/assets/images/logo.png') }}" alt="logo" height="22">
+                      </a>
+                      <a href="index.html" class="logo-dark">
+                        <img src="{{ asset('dist/assets/images/logo-dark.png') }}" alt="dark logo" height="22">
+                      </a>
+                    </div> --}}
+                  <div class="p-4 my-auto">
+                    <h4 class="fs-20">Sign In</h4>
+                    <p class="text-muted mb-3">Silahkan login menggunakan akun SSO anda.
+                    </p>
 
-              <form action="#">
-                @csrf
-                <div class="form-group mb-3">
-                  <label class="form-label" for="emailaddress">Email address</label>
-                  <input class="form-control" type="email" name="username" required placeholder="Username">
+                    <!-- form -->
+                    <form action="/login" method="POST">
+                      @csrf
+                      <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input class="form-control" type="text" id="username" required="" placeholder="Username"
+                          name="username">
+                      </div>
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input class="form-control" type="password" required="" id="password" placeholder="Password"
+                          name="password">
+                      </div>
+                      <div class="mb-0 text-start">
+                        <button class="btn btn-soft-primary w-100" type="submit"><i
+                            class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Log
+                            In</span> </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-
-                <div class="form-group mb-3">
-                  <a href="pages-recoverpw.html" class="text-muted float-end"><small></small></a>
-                  <label class="form-label" for="password">Password</label>
-                  <input class="form-control" type="password" name="password" required placeholder="Password">
-                </div>
-
-                <div class="form-group mb-0 text-center">
-                  <button class="btn btn-primary w-100" type="submit"> Log In </button>
-                </div>
-
-              </form>
-            </div> <!-- end card-body -->
+              </div>
+            </div>
           </div>
-          <!-- end card -->
-
-          <div class="row mt-3">
-            <div class="col-12 text-center">
-              <p class="text-white-50"> <a href="pages-register.html" class="text-white-50 ms-1">Silahkan Sign In
-                  menggunakan akun SSO Anda.</a></p>
-            </div> <!-- end col -->
-          </div>
-          <!-- end row -->
-
-        </div> <!-- end col -->
+        </div>
       </div>
-      <!-- end row -->
     </div>
 
-    <!-- App js -->
+    {{-- <footer class="footer footer-alt fw-medium">
+      <span class="text-dark">
+        <script>
+          document.write(new Date().getFullYear())
+        </script> © Velonic - Theme by Techzaa
+      </span>
+    </footer> --}}
+
     <script src="{{ asset('dist/assets/js/vendor.min.js') }}"></script>
-    <script src="{{ asset('dist/assets/js/app.js') }}"></script>
+    <script src="{{ asset('dist/assets/js/app.min.js') }}"></script>
 
   </body>
 

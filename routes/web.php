@@ -17,14 +17,14 @@ use App\Http\Controllers\C_StudyProgram;
 |
 */
 
-// Route::controller(C_Auth::class)->group(function () {
-//     Route::get('/', 'index');
-//     Route::post('/login', 'login');
-//     Route::get('/logout', 'logout');
-// });
+Route::controller(C_Auth::class)->group(function () {
+    Route::get('/', 'index');
+    Route::post('/login', 'login');
+    Route::get('/logout', 'logout');
+});
 
 Route::controller(C_Dashboard::class)->group(function () {
-    Route::get('/', 'index');
+    Route::get('/dashboard', 'index');
     Route::get('/metric', 'metric');
 });
 

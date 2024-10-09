@@ -11,7 +11,7 @@ class C_Auth extends Controller
   public function index()
   {
     if (session()->has('id')) {
-      return redirect('/');
+      return redirect('/dashboard');
     }
     return view('auth.login', ['title' => 'Login']);
   }
@@ -21,17 +21,25 @@ class C_Auth extends Controller
     $username = $request->username;
     $password = $request->password;
 
-    $response = Http::asForm()->post('https://gateway.telkomuniversity.ac.id/issueauth', [
-      'username' => $username,
-      'password' => $password,
-    ]);
+    // $response = Http::asForm()->post('https://gateway.telkomuniversity.ac.id/issueauth', [
+    //   'username' => $username,
+    //   'password' => $password,
+    // ]);
 
-    if (!isset($response['token'])) {
-      return redirect('/')->with('status', 'Login Gagal !');
-    } else {
+    // if (!isset($response['token'])) {
+    //   return redirect('/')->with('status', 'Login Gagal !');
+    // } else {
+    //   session(['id' => $username]);
+    //   session()->save();
+    //   return redirect('/dashboard');
+    // }
+
+    if ($username == 'admin' && $password == 'admin') {
       session(['id' => $username]);
       session()->save();
-      return view('index');
+      return redirect('/dashboard');
+    } else {
+      return redirect('/')->with('status', 'Login Gagal !');
     }
   }
 
