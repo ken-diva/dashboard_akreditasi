@@ -46,6 +46,8 @@ Route::controller(C_StudyProgram::class)->group(function () {
     Route::post('/study_program/update_data/{id}', 'update_data');
     Route::get('/study_program/delete/{id}', 'delete');
     Route::get('/study_program/detail/{id}', 'detail');
+    Route::get('/study_program/detail_edit/{id}', 'detail_edit');
+    Route::get('/test2/{id}', 'detail_edit');
 });
 
 // check databases

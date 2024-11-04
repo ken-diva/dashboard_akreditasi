@@ -34,6 +34,8 @@ class C_StudyProgram extends Controller
             ->where('study_program.id', $id)
             ->first();
 
+        $list_faculty = DB::table('faculty')->get();
+
         if ($data) {
 
             $level_formatted = "";
@@ -50,10 +52,12 @@ class C_StudyProgram extends Controller
             }
 
             return response()->json([
-                'faculty_name' => $data->faculty_name,
+                'id' => $data->id,
+                'selected_option_id' => $data->faculty_id,
+                'options' => $list_faculty,
                 'studyprogram_name' => $data->studyprogram_name,
                 'faculty_id' => $data->faculty_id,
-                'level' => $level_formatted,
+                'level' => $data->level,
                 'accreditation_status' => $data->accreditation_status,
                 'national_accreditation' => $data->national_accreditation,
                 'national_accrediation_grade' => $data->national_accrediation_grade,
@@ -76,6 +80,24 @@ class C_StudyProgram extends Controller
         //     'bread_item_active' => 'Detail Program Studi',
         // ]);
     }
+
+    // public function detail_edit($id)
+    // {
+    //     $data_studyprogram = DB::table('study_program')
+    //         ->join("faculty", "faculty.id", "=", "study_program.faculty_id")
+    //         ->select("faculty.faculty_name", "study_program.*")
+    //         ->where('study_program.id', $id)
+    //         ->first();
+
+    //     $list_faculty = DB::table('faculty')->get();
+
+    //     return response()->json([
+    //         'id' => $data_studyprogram->id,
+    //         'selected_option_id' => $data_studyprogram->faculty_id,  // Mengirim faculty_id untuk selected
+    //         'options' => $list_faculty
+    //     ]);
+    // }
+
 
     public function add()
     {
@@ -184,7 +206,7 @@ class C_StudyProgram extends Controller
 
     public function update_data($id, Request $request)
     {
-        // Validate the incoming request data
+        // // Validate the incoming request data
         $request->validate([
             'studyprogram_name' => 'required|string|max:255',
         ]);
@@ -222,13 +244,22 @@ class C_StudyProgram extends Controller
                 ]
             );
 
+        return response()->json(['success' => 'Data Program Studi berhasil diupdate!']);
+
+        // // for notification
+        // if ($updated > 0) {
+        //     session()->flash('update_success', 'Data Program Studi berhasil diupdate!');
+        // } else {
+        //     session()->flash('update_failed', 'Data Program Studi gagal diupdate!');
+        // }
+
         // for notification
         if ($updated > 0) {
-            session()->flash('update_success', 'Data Program Studi berhasil diupdate!');
+            return response()->json(['success' => 'Data Program Studi berhasil diupdate!']);
         } else {
-            session()->flash('update_failed', 'Data Program Studi gagal diupdate!');
+            return response()->json(['failed' => 'Data Program Studi gagal diupdate!']);
         }
 
-        return redirect('/study_program');
+        // return redirect('/study_program');
     }
 }

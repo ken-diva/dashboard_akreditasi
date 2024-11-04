@@ -4,8 +4,8 @@
   @if (session('update_success'))
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        let modalId = '#update_success-modal';
-        let myModal = new bootstrap.Modal(document.querySelector(modalId));
+        var modalId = '#update_success-modal';
+        var myModal = new bootstrap.Modal(document.querySelector(modalId));
         myModal.show();
       });
     </script>
@@ -43,8 +43,8 @@
   @if (session('delete_success'))
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        let modalId = '#delete_success-modal';
-        let myModal = new bootstrap.Modal(document.querySelector(modalId));
+        var modalId = '#delete_success-modal';
+        var myModal = new bootstrap.Modal(document.querySelector(modalId));
         myModal.show();
       });
     </script>
@@ -82,8 +82,8 @@
   @if (session('add_success'))
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        let modalId = '#add_success-modal';
-        let myModal = new bootstrap.Modal(document.querySelector(modalId));
+        var modalId = '#add_success-modal';
+        var myModal = new bootstrap.Modal(document.querySelector(modalId));
         myModal.show();
       });
     </script>
@@ -247,64 +247,145 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="update-form">
+          <div class="mb-2">
+            <label class="form-label">Nama Fakultas</label>
+            <input type="text" class="form-control" id="faculty_name-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Program Studi</label>
+            <input type="text" class="form-control" id="studyprogram_name-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Jenjang</label>
+            <input type="text" class="form-control" id="level-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Status Akreditasi</label>
+            <input type="text" class="form-control" id="accreditation_status-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Akreditasi Nasional</label>
+            <input type="text" class="form-control" id="national_accreditation-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Grade Akreditasi Nasional</label>
+            <input type="text" class="form-control" id="national_accrediation_grade-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Tanggal Akreditasi Nasional</label>
+            <input type="text" class="form-control" id="date_national_accreditation-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Tanggal Kadaluarsa Akreditasi Nasional</label>
+            <input type="text" class="form-control" id="expired_national_accreditation-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Akreditasi Internasional</label>
+            <input type="text" class="form-control" id="international_accreditaton-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Grade Akreditasi Internasional</label>
+            <input type="text" class="form-control" id="international_accrediation_grade-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Tanggal Akreditasi Internasional</label>
+            <input type="text" class="form-control" id="date_international_accreditation-modal" disabled>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Tanggal Kadaluarsa Akreditasi Internasional</label>
+            <input type="text" class="form-control" id="expired_international_accreditation-modal" disabled>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal"
+            data-bs-target="#edit-data-modal" data-bs-toggle="modal" data-id="edit-btn" id="edit-btn">Edit
+            Data</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal edit data -->
+  <div id="edit-data-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="edit-data-modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form id="edit-form" action="#" method="POST">
+          @csrf
+          <div class="modal-header">
+            <h4 class="modal-title" id="edit-data-modalLabel">Edit Data Fakultas</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
             <div class="mb-2">
               <label class="form-label">Nama Fakultas</label>
-              <select class="form-control" name="faculty_id" id="faculty_name-modal" disabled></select>
+              {{-- <input type="text" class="form-control" id="faculty_name-modal2"> --}}
+              <select class="form-control" name="faculty_id" id="faculty_name-modal2">
+
+              </select>
             </div>
             <div class="mb-2">
               <label class="form-label">Program Studi</label>
-              <input type="text" class="form-control" id="studyprogram_name-modal" disabled>
+              <input type="text" class="form-control" id="studyprogram_name-modal2" required
+                name="studyprogram_name">
             </div>
             <div class="mb-2">
               <label class="form-label">Jenjang</label>
-              <select class="form-control" name="level" id="level-modal" disabled></select>
-              {{-- <input type="text" class="form-control" id="level-modal" disabled> --}}
+              <input type="text" class="form-control" id="level-modal2">
             </div>
             <div class="mb-2">
               <label class="form-label">Status Akreditasi</label>
-              <input type="text" class="form-control" id="accreditation_status-modal" disabled>
+              <input type="text" class="form-control" id="accreditation_status-modal2" required
+                name="accreditation_status">
             </div>
             <div class="mb-2">
               <label class="form-label">Akreditasi Nasional</label>
-              <input type="text" class="form-control" id="national_accreditation-modal" disabled>
+              <input type="text" class="form-control" id="national_accreditation-modal2" required
+                name="national_accreditation">
             </div>
             <div class="mb-2">
               <label class="form-label">Grade Akreditasi Nasional</label>
-              <input type="text" class="form-control" id="national_accrediation_grade-modal" disabled>
+              <input type="text" class="form-control" id="national_accrediation_grade-modal2" required
+                name="national_accrediation_grade">
             </div>
             <div class="mb-2">
               <label class="form-label">Tanggal Akreditasi Nasional</label>
-              <input type="date" class="form-control" id="date_national_accreditation-modal" disabled>
+              <input type="text" class="form-control" id="date_national_accreditation-modal2">
             </div>
             <div class="mb-2">
               <label class="form-label">Tanggal Kadaluarsa Akreditasi Nasional</label>
-              <input type="date" class="form-control" id="expired_national_accreditation-modal" disabled>
+              <input type="text" class="form-control" id="expired_national_accreditation-modal2">
             </div>
             <div class="mb-2">
               <label class="form-label">Akreditasi Internasional</label>
-              <input type="text" class="form-control" id="international_accreditaton-modal" disabled>
+              <input type="text" class="form-control" id="international_accreditaton-modal2" required
+                name="international_accreditaton">
             </div>
             <div class="mb-2">
               <label class="form-label">Grade Akreditasi Internasional</label>
-              <input type="text" class="form-control" id="international_accrediation_grade-modal" disabled>
+              <input type="text" class="form-control" id="international_accrediation_grade-modal2" required
+                name="international_accrediation_grade">
             </div>
             <div class="mb-2">
               <label class="form-label">Tanggal Akreditasi Internasional</label>
-              <input type="date" class="form-control" id="date_international_accreditation-modal" disabled>
+              <input type="text" class="form-control" id="date_international_accreditation-modal2">
             </div>
             <div class="mb-2">
               <label class="form-label">Tanggal Kadaluarsa Akreditasi Internasional</label>
-              <input type="date" class="form-control" id="expired_international_accreditation-modal" disabled>
+              <input type="text" class="form-control" id="expired_international_accreditation-modal2">
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger w-100" id="edit-btn" data-id="edit-data">Edit
-            Data</button>
-          <button type="submit" class="btn btn-warning w-100" id="update-btn">Update
-            Data</button>
-        </div>
+            <hr>
+            <div class="mt-2">
+              <div class="d-flex">
+                <button type="button" data-bs-dismiss="modal" class="btn btn-outline-danger w-100 me-2"><i
+                    class="ri-close-line "></i><span class="px-1">Batalkan</span></button>
+                <button type="submit" class="btn btn-danger w-100"><i class="ri-check-line "></i><span
+                    class="px-1">Update
+                    Data</span></button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -317,7 +398,12 @@
         <div class="card-header">
           <h4 class="header-title">Data Program Studi</h4>
           <p class="text-muted mb-0">
-            Note: Data yang ditampilkan masih berupa data dummy.
+            DataTables has most features enabled by default, so all you need to do to use it
+            with your own tables is to call the construction
+            function:
+            <code>$().DataTable();</code>. KeyTable provides Excel like cell navigation on
+            any table. Events (focus, blur, action etc) can be assigned to individual
+            cells, columns, rows or all cells.
           </p>
         </div>
         <div class="card-body">
@@ -405,166 +491,78 @@
   {{-- script detail --}}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      let itemId = "";
-      $('#edit-btn').show();
-      $('#update-btn').hide();
-
-      $('#detail-data-modal').on('hide.bs.modal', function() {
-        $('#faculty_name-modal').attr('disabled', true);
-        $('#studyprogram_name-modal').attr('disabled', true);
-        $('#level-modal').attr('disabled', true);
-        $('#accreditation_status-modal').attr('disabled', true);
-        $('#national_accreditation-modal').attr('disabled', true);
-        $('#national_accrediation_grade-modal').attr('disabled', true);
-        $('#date_national_accreditation-modal').attr('disabled', true);
-        $('#expired_national_accreditation-modal').attr('disabled', true);
-        $('#international_accreditaton-modal').attr('disabled', true);
-        $('#international_accrediation_grade-modal').attr('disabled', true);
-        $('#date_international_accreditation-modal').attr('disabled', true);
-        $('#expired_international_accreditation-modal').attr('disabled', true);
-        $('#edit-btn').show();
-        $('#update-btn').hide();
-      });
-
+      // Event listener for when the modal is triggered
       $('#detail-data-modal').on('show.bs.modal', function(event) {
-        let button = $(event.relatedTarget);
-        itemId = button.data('id');
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var itemId = button.data('id'); // Extract item ID from data-* attributes
 
         // Make AJAX request to fetch item details
         $.ajax({
-          url: '/study_program/detail/' + itemId,
+          url: '/study_program/detail/' + itemId, // Replace with your route to get item details
           method: 'GET',
           success: function(response) {
-
-            // Kosongkan select options sebelum mengisinya
-            $('#faculty_name-modal').empty();
-
-            // Iterasi response.options untuk menambahkan setiap option ke dalam select
-            $.each(response.options, function(key, value) {
-              // Tentukan apakah option ini harus dipilih
-              let selected = value.id == response.selected_option_id ? 'selected' : '';
-
-              // Tambahkan setiap option ke dalam select
-              $('#faculty_name-modal').append('<option value="' + value.id + '" ' + selected + '>' +
-                value.faculty_name + '</option>');
-            });
-
             // Populate modal with data
-            // $('#faculty_name-modal').val(response.faculty_name);
+            $('#faculty_name-modal').val(response.faculty_name);
             $('#studyprogram_name-modal').val(response.studyprogram_name);
-
-            // $('#level-modal').val(response.level);
-            $('#level-modal').empty();
-            $('#level-modal').append('<option value="1"' + (response.level == 1 ? ' selected' : '') +
-              '>S1</option>');
-            $('#level-modal').append('<option value="2"' + (response.level == 2 ? ' selected' : '') +
-              '>S2</option>');
-            $('#level-modal').append('<option value="3"' + (response.level == 3 ? ' selected' : '') +
-              '>S3</option>');
-            $('#level-modal').append('<option value="4"' + (response.level == 4 ? ' selected' : '') +
-              '>D3</option>');
-            $('#level-modal').append('<option value="5"' + (response.level == 5 ? ' selected' : '') +
-              '>D4</option>');
-
+            $('#level-modal').val(response.level);
             $('#accreditation_status-modal').val(response.accreditation_status);
             $('#national_accreditation-modal').val(response.national_accreditation);
             $('#national_accrediation_grade-modal').val(response.national_accrediation_grade);
-            $('#date_national_accreditation-modal').val(convertDateToISO(response
-              .date_national_accreditation));
-            $('#expired_national_accreditation-modal').val(convertDateToISO(response
-              .expired_national_accreditation));
+            $('#date_national_accreditation-modal').val(response.date_national_accreditation);
+            $('#expired_national_accreditation-modal').val(response.expired_national_accreditation);
             $('#international_accreditaton-modal').val(response.international_accreditaton);
             $('#international_accrediation_grade-modal').val(response.international_accrediation_grade);
-            $('#date_international_accreditation-modal').val(convertDateToISO(response
-              .date_international_accreditation));
-            $('#expired_international_accreditation-modal').val(convertDateToISO(response
-              .expired_international_accreditation));
+            $('#date_international_accreditation-modal').val(response.date_international_accreditation);
+            $('#expired_international_accreditation-modal').val(response
+              .expired_international_accreditation);
             $('#edit-btn').attr('data-id', itemId);
-            // console.log(itemId);
           },
           error: function() {
             alert('Failed to fetch item details');
           }
         });
       });
+    });
+  </script>
 
-      $('#edit-btn').click(function() {
-        console.log(itemId)
+  {{-- script edit --}}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Event listener for when the modal is triggered
+      $('#edit-data-modal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var itemId = button.data('id'); // Extract item ID from data-* attributes
 
-        $('#faculty_name-modal').removeAttr('disabled');
-        $('#studyprogram_name-modal').removeAttr('disabled');
-        $('#level-modal').removeAttr('disabled');
-        $('#accreditation_status-modal').removeAttr('disabled');
-        $('#national_accreditation-modal').removeAttr('disabled');
-        $('#national_accrediation_grade-modal').removeAttr('disabled');
-        $('#date_national_accreditation-modal').removeAttr('disabled');
-        $('#expired_national_accreditation-modal').removeAttr('disabled');
-        $('#international_accreditaton-modal').removeAttr('disabled');
-        $('#international_accrediation_grade-modal').removeAttr('disabled');
-        $('#date_international_accreditation-modal').removeAttr('disabled');
-        $('#expired_international_accreditation-modal').removeAttr('disabled');
+        console.log(button);
 
-        // show update
-        $('#edit-btn').hide();
-        $('#update-btn').show();
-        // $('#update-btn').attr('hidden', false);
-      });
-
-      // Capture form submit event
-      $('#update-btn').on('click', function(event) {
-        console.log("Updating data..." + itemId);
-        event.preventDefault(); // Prevent the default button action
-
-        // Gather form data
-        let formData = {
-          _token: $('meta[name="csrf-token"]').attr('content'), // CSRF token
-          faculty_name: $('#faculty_name-modal').val(),
-          studyprogram_name: $('#studyprogram_name-modal').val(),
-          level: $('#level-modal').val(),
-          accreditation_status: $('#accreditation_status-modal').val(),
-          national_accreditation: $('#national_accreditation-modal').val(),
-          national_accrediation_grade: $('#national_accrediation_grade-modal').val(),
-          date_national_accreditation: $('#date_national_accreditation-modal').val(),
-          expired_national_accreditation: $('#expired_national_accreditation-modal').val(),
-          international_accreditaton: $('#international_accreditaton-modal').val(),
-          international_accrediation_grade: $('#international_accrediation_grade-modal').val(),
-          date_international_accreditation: $('#date_international_accreditation-modal').val(),
-          expired_international_accreditation: $('#expired_international_accreditation-modal').val()
-        };
-
-        // AJAX request to update data
+        // Make AJAX request to fetch item details
         $.ajax({
-          url: '/study_program/update_data/' + itemId,
-          method: 'POST',
-          data: formData,
+          url: '/study_program/detail_edit/' + itemId, // Replace with your route to get item details
+          method: 'GET',
           success: function(response) {
-            // Handle success
-            alert(response.success);
-            $('#detail-data-modal').modal('hide'); // Close modal
 
-            // Optionally, refresh the table to show updated data
-            // $('#basic-datatable').DataTable().ajax.reload();
+            // Kosongkan select options sebelum mengisinya
+            $('#faculty_name-modal2').empty();
+
+            // Iterasi response.options untuk menambahkan setiap option ke dalam select
+            $.each(response.options, function(key, value) {
+              // Tentukan apakah option ini harus dipilih
+              var selected = value.id == response.selected_option_id ? 'selected' : '';
+
+              // Tambahkan setiap option ke dalam select
+              $('#faculty_name-modal2').append('<option value="' + value.id + '" ' + selected + '>' +
+                value.faculty_name + '</option>');
+            });
+
+            // Tampilkan modal dan atur action pada form
+            $('#edit-data-modal').modal('show');
+            $('#edit-form').attr('action', "/study_program/update_data/" + itemId);
           },
-          error: function(xhr) {
-            let errors = xhr.responseJSON.errors;
-            for (let field in errors) {
-              alert(errors[field][0]); // Display each validation error
-            }
+          error: function() {
+            alert('Failed to fetch item details');
           }
         });
       });
-
     });
-
-    // Fungsi untuk mengonversi format tanggal ke YYYY-MM-DD
-    function convertDateToISO(formattedDate) {
-      const date = new Date(formattedDate);
-      const year = date.getFullYear();
-      const month = ("0" + (date.getMonth() + 1)).slice(-2);
-      const day = ("0" + date.getDate()).slice(-2);
-
-      // Gabungkan menjadi YYYY-MM-DD
-      return `${year}-${month}-${day}`;
-    }
   </script>
 @endsection
